@@ -1,0 +1,4 @@
+openai==1.2.4
+ortools==9.7.2996
+googlemaps==4.10.0
+pyyaml
