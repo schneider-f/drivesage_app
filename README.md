@@ -23,6 +23,7 @@ google:
 ```plaintext
 drivesage_app/
 |-- app.py
+|-- pipeline.py
 |-- templates/
 |   |-- index.html
 |-- requirements.txt
@@ -32,6 +33,7 @@ drivesage_app/
 
 - drivesage_app: The main folder for your project.
 - app.py: Your Flask application.
+- pipeline.py: Your Flask application.
 - templates: Folder containing HTML templates.
 - requirements.txt: File listing Python dependencies for your Flask app.
 - API_config.yaml: Configuration file containing API keys.
