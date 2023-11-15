@@ -130,17 +130,13 @@ def generate_visualization_map(warehouse_address, delivery_addresses):
       </script>
     </head>
     <body>
-      <h1>Delivery Locations</h1>
-      <div id="map" style="height: 600px;"></div>
+      <h4>Delivery Locations</h4>
+      <div id="map" style="height: 400px;"></div>
     </body>
     </html>
     """
 
-    # Save the HTML content to a file
-    with open('toronto_map.html', 'w') as file:
-        file.write(html_content)
-
-    return
+    return html_content
 
 def compute_cost_matrix(addresses, time_of_the_day=None, cost_type='Time'):
     # Calculate the desired departure time
@@ -326,4 +322,4 @@ def run(input):
     for route in routes_with_address:
         results.append(generate_google_maps_directions_link(route))
 
-    return results
+    return data, results
