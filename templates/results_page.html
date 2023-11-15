@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Home.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/logo.png') }}" alt="Logo">
+        </div>
+    </header>
+    <main>
+        <div class="grey-box">
+            <h3 class="w3-jumbo"><b>Results Page</b><br /></h3>
+            <p>
+                <br />
+                <b>
+                    Optimized routes:
+                </b>
+            </p>
+            <br> 
+            {% for result in results %}
+                {% set vehicule_number = loop.index %}
+                <p><a href="{{ result }}" target="_blank">Route for Vehicle {{ vehicule_number }}</a></p>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <h4>APS1049@DriveSage</h4>
+    </footer>
+</body>
+</html>

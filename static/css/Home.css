@@ -88,6 +88,10 @@ button {
     cursor: pointer;
 }
 
+a {
+    color: inherit;
+}
+
 .btn-more-info {
     background-color: black;
     color: white;
