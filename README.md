@@ -11,9 +11,11 @@ openai:
 google:
   api_key: YOUR_GOOGLE_API_KEY_HERE
 ```
-
+- start docker desktop to start docker daemon
 - build the docker image: `docker build -t my_app .`
-- start the application `docker run my_app`
+- start the application `docker run -p 5000:5000 -it my_app`
+
+- useful for debug a running container: docker exec -it <container_id_or_name> /bin/bash
 
 
 ## Documentation

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveSage</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Home.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/logo.png') }}" alt="Logo">
+        </div>
+    </header>
+    <main>
+        <div class="grey-box">
+            <h3 class="w3-jumbo"><b>Here is an example of prompt that our tool can solve:</b><br /></h3>
+            <p>
+                <br />
+                <b>
+                    ​"Starting at 1 Austin Terrace, Toronto, ON M5R 1X8, Canada, we have deliveries to make tomorrow afternoon at various locations.
+                    Here are the addresss:<br />
+                    King's College Cir, Toronto, ON, Canada;<br />
+                    8 Adelaide St W, Toronto, ON M5H 0A9, Canada;<br />
+                    1 Dundas St E, Toronto, ON M5B 2R8, Canada.;<br />
+                    677 Bloor St W, Toronto, ON M6G 1L3, Canada;<br />
+                    789 Yonge St, Toronto, ON M4W 2G8, Canada;<br />
+                    100 Queen St W, Toronto, ON M5H 2N3, Canada;<br />
+                    We only have one delivery truck. Please assist us in organizing the route to minimize the total driving distance."
+                </b>
+            </p>
+        </div>
+
+        <form class="form" action="/submit" method="POST">
+            <label for="prompttext"></label>
+            <textarea id="prompttext" name="prompttext" placeholder="Enter your prompt here..."></textarea>
+            <div class="btn-grp">
+                <button type="button" class="btn-more-info"><b>More Info</b></button>
+                <button type="submit" class="btn-submit"><b>Submit</b></button>
+            </div>
+        </form>
+
+        <footer>
+            <h4>APS1049@DriveSage</h4>
+        </footer>
+        
+    </main>
+</body>
+</html>

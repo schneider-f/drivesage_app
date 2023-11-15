@@ -1,0 +1,154 @@
+﻿/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: white;
+    font-family: 'Montserrat';
+}
+
+/* Header styles */
+header {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+/* Image background */
+.bgimg {
+    background-image: url('./images/APS1049-ui-bg.png');
+    background-size: cover;
+    height: auto;
+}
+
+h3, p {
+    text-shadow: 2px 2px 5px black;
+}
+
+/* Main content styles */
+main {
+    background-image: url('./images/APS1049-ui-bg.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.grey-box {
+    box-shadow: 5px 5px 5px black;
+    background-color: rgb(118, 111, 111, 0.5);
+    padding: 10px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+form {
+    background-color: rgb(255,255,255, 0.25);
+    box-shadow: 5px 5px 2px black;
+    border-radius: 4px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+textarea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat';
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 60px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn-more-info {
+    background-color: black;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+    .btn-more-info:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .btn-more-info:active {
+        background-color: white;
+        color: black;
+        transform: translateY(4px);
+    }
+
+    .btn-submit {
+    background-color: #FDF733;
+    color: black;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+    .btn-submit:hover {
+        background-color: black;
+        color: yellow;
+    }
+
+        .btn-submit:active {
+            background-color: black;
+            color: yellow;
+            transform: translateY(4px);
+        }
+
+/*
+    footer {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+*/
+
+footer {
+    margin: auto;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: auto;
+    color: black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
