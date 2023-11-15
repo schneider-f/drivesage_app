@@ -131,7 +131,8 @@ def generate_visualization_map(warehouse_address, delivery_addresses):
     </head>
     <body>
       <h4>Delivery Locations</h4>
-      <div id="map" style="height: 400px;"></div>
+      <br>
+      <div id="map" style="height: 400px;width: 100%;"></div>
     </body>
     </html>
     """

@@ -26,8 +26,13 @@ google:
 drivesage_app/
 |-- app.py
 |-- pipeline.py
-|-- html/
-|   |-- m1.html
+|-- templates/
+|   |-- Home.html
+|   |-- results_page.html
+|-- statics/
+|   |-- css/
+    |   |-- Home.css
+    |   |-- images/
 |-- requirements.txt
 |-- API_config.yaml
 |-- Dockerfile 
@@ -36,7 +41,7 @@ drivesage_app/
 - drivesage_app: The main folder for your project.
 - app.py: the Flask application.
 - pipeline.py: Main pipeline for route optimization.
-- hmtl: Folder containing HTML files.
+- templates: Folder containing HTML files.
 - requirements.txt: File listing Python dependencies for your Flask app.
 - API_config.yaml: Configuration file containing API keys.
 - Dockerfile: File for Docker container configuration.
