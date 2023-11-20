@@ -42,6 +42,6 @@ drivesage_app/
 - Dockerfile: File for Docker container configuration.
 
 ### Pending modifications
-- deal with cache error
 - modify maps link function to cut it in part if too long
 - api latency?
+- edit maps to display route computed using Directions API and display using polyline
