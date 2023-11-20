@@ -45,4 +45,3 @@ drivesage_app/
 - deal with cache error
 - modify maps link function to cut it in part if too long
 - api latency?
-- generation of direction link, add time of day
