@@ -27,21 +27,22 @@ drivesage_app/
 |-- app.py
 |-- pipeline.py
 |-- templates/
-|   |-- Home.html
-|   |-- results_page.html
-|-- statics/
-|   |-- css/
-    |   |-- Home.css
-    |   |-- images/
+|-- static/
 |-- requirements.txt
 |-- API_config.yaml
-|-- Dockerfile 
+|-- Dockerfile
 ```
 
-- drivesage_app: The main folder for your project.
-- app.py: the Flask application.
-- pipeline.py: Main pipeline for route optimization.
+- app.py: Main Flask application.
+- pipeline.py: Pipeline code for route optimization.
 - templates: Folder containing HTML files.
+- static: Folder containing CSS files
 - requirements.txt: File listing Python dependencies for your Flask app.
 - API_config.yaml: Configuration file containing API keys.
 - Dockerfile: File for Docker container configuration.
+
+### Pending modifications
+- deal with cache error
+- modify maps link function to cut it in part if too long
+- api latency?
+- generation of direction link, add time of day
