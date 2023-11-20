@@ -109,7 +109,7 @@ a {
         transform: translateY(4px);
     }
 
-    .btn-submit {
+.btn-submit {
     background-color: #FDF733;
     color: black;
     border: none;
@@ -121,12 +121,28 @@ a {
         color: yellow;
     }
 
-        .btn-submit:active {
-            background-color: black;
-            color: yellow;
-            transform: translateY(4px);
-        }
+    .btn-submit:active {
+        background-color: black;
+        color: yellow;
+        transform: translateY(4px);
+    }
 
+.btn-back {
+    background-color: black;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+    .btn-back:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .btn-back:active {
+        background-color: white;
+        color: black;
+        transform: translateY(4px);
+    }
 /*
     footer {
     background-color: white;
@@ -143,7 +159,6 @@ a {
     height: 50px;
 }
 */
-
 footer {
     margin: auto;
     background-color: white;

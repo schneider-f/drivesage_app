@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RouteMap</title>
-    <link rel="stylesheet" href="HomeCss.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 <body>
@@ -17,6 +18,7 @@
     <main>
         <h1>Delivery Locations</h1>
         <div id="map" style="height: 600px;"></div>
+        <button class="btn-back" onclick="window.location.href = 'FirstPage.html';"><i class="fa fa-home"></i><b> Back to home page</b></button>
     </main>
 
 
