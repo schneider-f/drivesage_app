@@ -131,6 +131,8 @@ def generate_visualization_map(warehouse_address, delivery_addresses):
             }});
           }});
         }}
+        // Ensure initMap is called after the Google Maps API script is fully loaded
+        window.onload = initMap;
       </script>
     </head>
     <body>
