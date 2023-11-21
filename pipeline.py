@@ -355,7 +355,7 @@ def compute_metrics(data, optimal_routes):
         info['link'] = generate_google_maps_directions_link(info['route_with_address']) 
         results.append(info)
 
-    return sorted(results, key=lambda x: x['load'])
+    return sorted(results, key=lambda x: x['load'], reverse = True)
 
 def run(input):
     """
