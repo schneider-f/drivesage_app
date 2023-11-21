@@ -136,8 +136,6 @@ def generate_visualization_map(warehouse_address, delivery_addresses):
       </script>
     </head>
     <body>
-      <h4>Delivery Locations</h4>
-      <br>
       <div id="map" style="height: 400px;width: 100%;"></div>
     </body>
     </html>
@@ -332,13 +330,39 @@ def generate_google_maps_directions_link(addresses, departure_time = None):
 
     return link
 
+def compute_metrics(data, optimal_routes):
+
+    def duration_route(data, route):
+        time = 0
+        for i in range(len(route)-1):
+            time+=data["cost_matrix"][route[i]][route[i+1]]
+        return time
+
+    def load_route(data, route):
+        load = 0
+        for c in route:
+            load+=data["demands"][c]
+        return load
+
+    results = []
+
+    for route in optimal_routes:
+        info = dict()
+        info['route'] = route
+        info['route_with_address'] = [data['addresses'][c] for c in route]
+        info['duration'] = duration_route(data, route)
+        info['load'] = load_route(data, route)
+        info['link'] = generate_google_maps_directions_link(info['route_with_address']) 
+        results.append(info)
+
+    return sorted(results, key=lambda x: x['load'])
+
 def run(input):
     """
     Main pipeline that takes the input from the client and return the optimized routes
     """
     # Step 1: Extract relevant data from the prompt using GenAI
     data = extract_data(input)
-    print("Extracted data:\n", json.dumps(data, indent=3))
 
     # Visualization of the problem, open the generated html file to see the map with delivery locations
     generate_visualization_map(data["addresses"][0], data["addresses"][1:])
@@ -349,11 +373,7 @@ def run(input):
     # Step 3: Find the optimized routes using Google OR-tools
     optimal_routes = CVRP_solver(data, verbose = True)
 
-    routes_with_address = [[data['addresses'][c] for c in route] for route in optimal_routes]
-
-    # Step 4: Generate maps directions
-    results = []
-    for route in routes_with_address:
-        results.append(generate_google_maps_directions_link(route))
+    # Step 4: Generate results with maps directions
+    results = compute_metrics(data, optimal_routes)
 
     return data, results

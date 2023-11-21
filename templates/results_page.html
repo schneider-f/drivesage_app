@@ -22,13 +22,20 @@
                 {{ map_html|safe }}
                 <br />
                 <b>
-                    Optimized routes:
+                    Optimized routes
                 </b>
             </p>
             <br> 
             {% for result in results %}
                 {% set vehicule_number = loop.index %}
-                <p><a href="{{ result }}" target="_blank">Route for Vehicle {{ vehicule_number }}</a></p>
+                
+                <p>
+                    <b>Vehicle {{ vehicule_number }}: </b><br>
+                    <!--Route: {{ (['W'] + result.route[1:-1] + ['W']) | map('string') | join(' → ') | replace('\\b0\\b', 'W') }}<br> -->
+                    Duration: {{ result.duration // 3600 }}h{{ (result.duration % 3600) // 60 }} - Load: {{ result.load }}<br>
+                    <a href="{{ result.link }}" target="_blank">Route link</a>
+                </p>
+                <br> 
             {% endfor %}
         </div>
     </main>
