@@ -69,7 +69,7 @@ def extract_data(input_text, verbose = False):
 
     return data
 
-def generate_visualization_map(warehouse_address, delivery_addresses):
+def generate_visualization_map(warehouse_address, delivery_addresses, routes, addresses):
     gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
 
     # Get the coordinates for the warehouse address
@@ -77,6 +77,41 @@ def generate_visualization_map(warehouse_address, delivery_addresses):
 
     # Create a map centered around the warehouse
     map_center = warehouse_location
+
+    # Convert routes to coordinate to follow
+    def get_route_coordinate(gmaps, route):
+        def get_route_coordinates_step(gmaps, origin, destination):
+            directions_result = gmaps.directions(origin, destination, mode="driving")
+            route = directions_result[0]['legs'][0]['steps']
+
+            # Extracting coordinates from each step of the route
+            coordinates = [[step['start_location']['lat'], step['start_location']['lng']] for step in route]
+            # Adding the destination coordinates
+            coordinates.append([route[-1]['end_location']['lat'], route[-1]['end_location']['lng']])
+
+            return coordinates
+
+        origin_idx, *waypoints, destination_idx = route
+        origin = addresses[origin_idx]
+        destination = addresses[destination_idx]
+
+        # Get real route coordinates from Google Maps Directions API
+        route_coordinates = []
+        for j in range(len(waypoints)):
+            waypoint = addresses[waypoints[j]]
+            route_coordinates += get_route_coordinates_step(gmaps, origin, waypoint)
+            origin = waypoint  # Update the origin for the next leg of the route
+
+        route_coordinates += get_route_coordinates_step(gmaps, origin, destination)
+
+        return route_coordinates
+
+    routes_by_coord = []
+    for route in routes:
+        routes_by_coord.append(get_route_coordinate(gmaps, route))
+
+    colors = ['red', 'blue', 'purple', 'orange', 'yellow', 'pink', 'cyan', 'brown', 'gray', 'olive', 'lime']
+    hex_colors = ['#FF0000', '#0000FF', '#800080', '#FFA500', '#FFFF00', '#FFC0CB', '#00FFFF', '#A52A2A', '#808080', '#808000', '#00FF00']
 
     # Generate the HTML for the map
     html_content = f"""
@@ -130,13 +165,33 @@ def generate_visualization_map(warehouse_address, delivery_addresses):
               }}
             }});
           }});
+        
+          var colors = ['#FF0000', '#0000FF', '#800080', '#FFA500', '#FFFF00', '#FFC0CB', '#00FFFF', '#A52A2A', '#808080', '#808000', '#00FF00'];
+          var routes = {routes_by_coord};
+          routes.forEach(function(route,index) {{
+            var routePath = [];
+            route.forEach(function(point) {{
+              var latLng = new google.maps.LatLng(point[0], point[1]);
+              routePath.push(latLng);
+            }});
+
+            var routePolyline = new google.maps.Polyline({{
+              clickable: false,
+              geodesic: true,
+              strokeColor: colors[index % 5],
+              strokeOpacity: 1.000000,
+              strokeWeight: 5,
+              map: map,
+              path: routePath
+            }});
+          }});
         }}
         // Ensure initMap is called after the Google Maps API script is fully loaded
         window.onload = initMap;
       </script>
     </head>
     <body>
-      <div id="map" style="height: 400px;width: 100%;"></div>
+      <div id="map" style="height: 400px;"></div>
     </body>
     </html>
     """
@@ -363,9 +418,6 @@ def run(input):
     """
     # Step 1: Extract relevant data from the prompt using GenAI
     data = extract_data(input)
-
-    # Visualization of the problem, open the generated html file to see the map with delivery locations
-    generate_visualization_map(data["addresses"][0], data["addresses"][1:])
 
     # Step 2: Compute time matrix
     data["cost_matrix"] = compute_cost_matrix(data["addresses"], data["datetime"])
