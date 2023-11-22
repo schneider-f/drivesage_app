@@ -62,6 +62,10 @@ def extract_data(input_text, verbose = False):
         # Check if all values have been captured
         if any(value == None for key, value in data.items()):
             raise ValueError("Missing some values in the extracted data.")
+        
+        if len(data["addresses"]) != len(data['demands']):
+            # Chatgpt got lost, it can happens when the output is too long, we can either asked to retry or fix it manually
+            data['demands'] = [0] + [1]*(len(data["addresses"])-1)
 
     except (ValueError, SyntaxError): # Try again
         print("ChatGPT did not output what was expected.")
@@ -109,9 +113,6 @@ def generate_visualization_map(warehouse_address, delivery_addresses, routes, ad
     routes_by_coord = []
     for route in routes:
         routes_by_coord.append(get_route_coordinate(gmaps, route))
-
-    colors = ['red', 'blue', 'purple', 'orange', 'yellow', 'pink', 'cyan', 'brown', 'gray', 'olive', 'lime']
-    hex_colors = ['#FF0000', '#0000FF', '#800080', '#FFA500', '#FFFF00', '#FFC0CB', '#00FFFF', '#A52A2A', '#808080', '#808000', '#00FF00']
 
     # Generate the HTML for the map
     html_content = f"""
@@ -166,7 +167,7 @@ def generate_visualization_map(warehouse_address, delivery_addresses, routes, ad
             }});
           }});
         
-          var colors = ['#FF0000', '#0000FF', '#800080', '#FFA500', '#FFFF00', '#FFC0CB', '#00FFFF', '#A52A2A', '#808080', '#808000', '#00FF00'];
+          var colors = ['#FF0000', '#0000FF', '#00FF00', '#FFA500', '#800080', '#00FFFF', '#A52A2A', '#FFFF00', '#FFC0CB', '#808080', '#808000'];
           var routes = {routes_by_coord};
           routes.forEach(function(route,index) {{
             var routePath = [];
@@ -178,7 +179,7 @@ def generate_visualization_map(warehouse_address, delivery_addresses, routes, ad
             var routePolyline = new google.maps.Polyline({{
               clickable: false,
               geodesic: true,
-              strokeColor: colors[index % 5],
+              strokeColor: colors[index % 10],
               strokeOpacity: 1.000000,
               strokeWeight: 5,
               map: map,
