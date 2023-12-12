@@ -1,4 +1,6 @@
-# drivesage_app
+# DriveSage Application
+
+This project was developed as part of the University of Toronto *Management Consulting for Engineers* course, in collaboration with industry partner Deloitte. The goal of the project was to explore the potential applications of Generative AI (GenAI) in route optimizations. The DriveSage application serves as a proof of concept, showcasing how GenAI can be utilized to interface with existing solvers for efficient route planning and optimization.
 
 <div style="display: flex; justify-content: space-between;">
   <img src="images/home_page.png" style="width: 48%;" />
@@ -105,7 +107,7 @@ We call the `CVRP_solver` that is based on the Google OR-tools package to solve 
 
 Right now, this pipeline can solve routing problems with several vehicles with heterogeneous capacity constraints (HCVRP). Yet, the VRP solver code used here can be adapted to account for other constraint types with enough knowledge of the Google OR-tools. For instance, by changing the function that Google OR-tools is trying to minimize, we can define whether we want to minimize the total distance driven or to minimize the maximum distance driven by our drivers (i.e. sharing the load as much as possible). We can also do anything in between by defining a more complex function that could for example take into account the cost of using additional drivers or renting bigger trucks.
 
-### Architecture choice and Online Deployment 
+### Architecture Choice and Online Deployment 
 
 While the application is currently running locally, it has been designed using Docker to encapsulate both the application and its dependencies. This containerization approach ensures that the application operates consistently across various environments. This design choice also facilitates the online deployment of the application on web applications host service such as Heroku, providing a seamless experience to deploy, manage, and scale containerized applications.
 
@@ -138,6 +140,10 @@ Therefore, the Google Maps cost is around \$1 / pipeline run, driven by the Dist
 
 Note that Google offers 200$ free credits per month to use its API.
 
-### Running time
+### Running Time
 
 For the instances we tested, our code took around 30-60 secs to run. While one would naturally assume that this time is taken to find the shortest routes, the optimization solver takes only 1 second to find the optimal route. Most of the time is taken by the OpenAI API call in the extraction function to extract the different information. As in ChatGPT, the response returned by the OpenAI API is generated token by token and this can take some time especially when there are a lot of addresses to extract and return. The more customers we have, the more addresses have to be extracted. The running time scales linearly with the size of the problem instance.
+
+## Acknowledgments
+
+I would like to express my gratitude to the entire team for their dedication and hard work on this project. Special thanks to Sneha for creating the front-end. 
